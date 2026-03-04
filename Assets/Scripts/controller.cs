@@ -52,20 +52,6 @@ public class controller : MonoBehaviour
 
                 //update the player's position
                 gameObject.transform.position = newPos;
-            }
-     public class Coin : MonoBehaviour
-    {
-    public int points = 5;
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        // Debug.Log($"Coin triggered by {other.name}");
-        if (other.CompareTag("Player"))
-        {
-            // Debug.Log("Seashell collected!");
-            GameManager.Instance.AddScore(points);
-            Destroy(gameObject);
-        }
-    }
+              }
     }
 }
