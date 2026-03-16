@@ -1,135 +1,66 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// A simple Singleton GameManager that persists across scenes and tracks score + lives.
+/// </summary>
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
 
-    public static GameManager Instance;
-    [Header("Seashell Settings")]
-    public int seashells = 0;
-    public int requiredSeashells = 20;
-
-    [Header("Lives")]
+    [Header("Game State")]
+    public int score = 0;
     public int lives = 3;
 
-    [Header("Timer")]
-    public float levelTime = 120f; // 2 minutes
-    private float currentTime;
-    public float moveSpeed = 7f;
-
-    private bool isFrozen = false;
+    [Header("Scene Settings")]
+    [Tooltip("Optional: set a scene name to load on game over.")]
+    public string gameOverSceneName = "GameOver";
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
+        // If an instance already exists and it's not this one, destroy this duplicate.
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
-        }
-    }
-
-    private void Start()
-    {
-        currentTime = levelTime;
-    }
-    private float sectionTimer = 0f;
-    private void Update()
-    {
-        RunTimer();
-        HandleButterfly();
-         CheckGameState();
-        sectionTimer += Time.deltaTime;
-
-    if (sectionTimer >= 60f)
-    {
-        SpawnButterfly();
-        sectionTimer = 0f;
-    }
-    }
-    void HandleButterfly()
-    {
-        sectionTimer += Time.deltaTime;
-
-        if (sectionTimer >= 60f)
-        {
-            SpawnButterfly();
-            sectionTimer = 0f;
-        }
-    }
-    void CheckGameState()
-    {
-        // Example logic
-        if (seashells >= requiredSeashells)
-        {
-            Debug.Log("Ready to free the mermaid!");
-        }
-    }
-
-    void RunTimer()
-    {
-        currentTime -= Time.deltaTime;
-
-        if (currentTime <= 0)
-        {
-            RestartLevel();
-        }
-    }
-
-    public void AddSeashells(int amount)
-    {
-        seashells += amount;
-
-        if (seashells < 0)
-        {
-            StartCoroutine(FreezePlayer());
+            return;
         }
 
-        Debug.Log("Seashells: " + seashells);
+        // Set the instance and persist across scenes.
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
-    public void LoseLife()
+    public void AddScore(int amount)
     {
-        lives--;
+        score += amount;
+        Debug.Log($"Score: {score}");
+        // In a real project, you might raise an event here to update UI.
+    }
+
+    public void LoseLife(int amount = 1)
+    {
+        lives -= amount;
+        Debug.Log($"Lives: {lives}");
 
         if (lives <= 0)
         {
-            RestartLevel();
+            GameOver();
         }
     }
 
-    IEnumerator FreezePlayer()
+    public void ResetGame()
     {
-        if (!isFrozen)
+        score = 0;
+        lives = 3;
+        Debug.Log("Game reset.");
+    }
+
+    private void GameOver()
+    {
+        Debug.Log("Game Over!");
+        if (!string.IsNullOrEmpty(gameOverSceneName))
         {
-            isFrozen = true;
-            PlayerMovement.Instance.canMove = false;
-
-            yield return new WaitForSeconds(5f);
-
-            PlayerMovement.Instance.canMove = true;
-            isFrozen = false;
+            SceneManager.LoadScene(gameOverSceneName);
         }
-    }
-
-    public void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public bool CanFreeMermaid()
-    {
-        return seashells >= requiredSeashells;
-    }
-
-
-    void SpawnButterfly()
-    {
-        Debug.Log("Butterfly appears to guide player!");
     }
 }
-

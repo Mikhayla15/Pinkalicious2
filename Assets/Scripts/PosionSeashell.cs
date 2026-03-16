@@ -6,9 +6,7 @@ public class PosionSeashell : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.AddSeashells(-2);
-            PlayerMovement.Instance.SpeedBoost(-0.1f, 15f);
-
+            GameManager.Instance.LoseLife(1);
             Destroy(gameObject);
         }
     }
