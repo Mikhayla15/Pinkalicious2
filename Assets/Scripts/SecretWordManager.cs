@@ -8,7 +8,7 @@ public class SecretWordManager : MonoBehaviour
     string secretWord = "PEARL";
     char[] revealedLetters;
 
-    void Start()
+    void Awake() // 🔥 runs BEFORE Start
     {
         revealedLetters = new char[secretWord.Length];
 
@@ -16,17 +16,41 @@ public class SecretWordManager : MonoBehaviour
         {
             revealedLetters[i] = '_';
         }
+    }
 
+    void Start()
+    {
         UpdateWordDisplay();
     }
-      public void RevealLetter(int index)
+
+    public void RevealLetter(int index)
     {
+        if (revealedLetters == null)
+        {
+            Debug.LogError("revealedLetters is NULL!");
+            return;
+        }
+
+        if (index < 0 || index >= secretWord.Length) return;
+
         revealedLetters[index] = secretWord[index];
         UpdateWordDisplay();
     }
 
     void UpdateWordDisplay()
     {
+        if (wordText == null)
+        {
+            Debug.LogError("wordText is NOT assigned!");
+            return;
+        }
+
+        if (revealedLetters == null)
+        {
+            Debug.LogError("revealedLetters is NULL in Update!");
+            return;
+        }
+
         wordText.text = string.Join(" ", revealedLetters);
     }
 }

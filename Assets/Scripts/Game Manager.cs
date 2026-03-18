@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 /// <summary>
-/// A simple Singleton GameManager that persists across scenes and tracks score + lives.
+/// Singleton GameManager that persists across scenes and tracks score, lives, and collected letters.
 /// </summary>
 public class GameManager : MonoBehaviour
 {
@@ -12,29 +13,32 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public int lives = 3;
 
+    [Header("Collected Letters")]
+    [Tooltip("Letters collected by the player across levels.")]
+    public HashSet<string> collectedLetters = new HashSet<string>();
+
     [Header("Scene Settings")]
     [Tooltip("Optional: set a scene name to load on game over.")]
     public string gameOverSceneName = "GameOver";
 
     private void Awake()
     {
-        // If an instance already exists and it's not this one, destroy this duplicate.
+        // Singleton pattern
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
 
-        // Set the instance and persist across scenes.
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
+    #region Score & Lives
     public void AddScore(int amount)
     {
         score += amount;
         Debug.Log($"Score: {score}");
-        // In a real project, you might raise an event here to update UI.
     }
 
     public void LoseLife(int amount = 1)
@@ -52,6 +56,7 @@ public class GameManager : MonoBehaviour
     {
         score = 0;
         lives = 3;
+        collectedLetters.Clear(); // Reset letters too
         Debug.Log("Game reset.");
     }
 
@@ -63,4 +68,34 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(gameOverSceneName);
         }
     }
+    #endregion
+
+    #region Letter Tracking
+    /// <summary>
+    /// Adds a letter to the player's collected letters.
+    /// </summary>
+    public void AddLetter(string letter)
+    {
+        if (collectedLetters.Add(letter)) // Adds only if not already collected
+        {
+            Debug.Log("Collected Letters: " + string.Join(",", collectedLetters));
+        }
+    }
+
+    /// <summary>
+    /// Check if a specific letter has already been collected.
+    /// </summary>
+    public bool HasLetter(string letter)
+    {
+        return collectedLetters.Contains(letter);
+    }
+
+    /// <summary>
+    /// Reset letters (if you want to start a new word/level sequence)
+    /// </summary>
+    public void ResetLetters()
+    {
+        collectedLetters.Clear();
+    }
+    #endregion
 }

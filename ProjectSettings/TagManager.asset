@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Ground
+  - crab
   layers:
   - Default
   - TransparentFX
@@ -41,14 +43,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: 'Backgorund '
-    uniqueID: 772187095
+  - name: Backround
+    uniqueID: 2308332691
+    locked: 0
+  - name: midground
+    uniqueID: 2719268435
     locked: 0
   - name: Foreground
     uniqueID: 2115787261
     locked: 0
   - name: Interaction
     uniqueID: 1338156025
+    locked: 0
+  - name: Ground
+    uniqueID: 772187095
     locked: 0
   m_RenderingLayers:
   - Default

@@ -1,73 +1,77 @@
 using UnityEngine;
-using System.Collections;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public static PlayerMovement Instance;
-
     [Header("Movement Settings")]
-    public float moveSpeed = 5f;
-    private float baseSpeed;
-    public bool canMove = true;
+    public float speed = 5f; 
+    public float jumpHeight = 2f;
 
-    [Header("Swimming Effect")]
-    public float floatAmplitude = 0.1f;
-    public float floatFrequency = 1f;
+    [Header("Score Settings")]
+    public int goldenSeashellsCollected = 0;
+    public TMP_Text scoreText;
 
-    private Rigidbody2D rb;
-    private Vector2 movement;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
+    private Vector3 startPosition;
+    private bool isFrozen = false;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        baseSpeed = moveSpeed;
+        startPosition = transform.position;
     }
 
     void Update()
     {
-        if (canMove)
+        if (!isFrozen)
         {
-            movement.x = Input.GetAxisRaw("Horizontal");
-            movement.y = Input.GetAxisRaw("Vertical");
+            MovePlayer();
         }
-        else
+
+        if(scoreText != null)
         {
-            movement = Vector2.zero;
+            scoreText.text = "Seashells: " + goldenSeashellsCollected;
         }
     }
 
-    void FixedUpdate()
+    void MovePlayer()
     {
-        Vector2 newPosition = rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime;
+        float moveX = 0f;
+        float moveY = 0f;
 
-        // Floating motion
-        float floatOffset = Mathf.Sin(Time.time * floatFrequency) * floatAmplitude;
-        newPosition.y += floatOffset;
+        if (Input.GetKey(KeyCode.RightArrow)) moveX = 1f;
+        if (Input.GetKey(KeyCode.LeftArrow)) moveX = -1f;
+        if (Input.GetKey(KeyCode.UpArrow)) moveY = 1f;
+        if (Input.GetKey(KeyCode.DownArrow)) moveY = -1f;
 
-        rb.MovePosition(newPosition);
+        transform.position += new Vector3(moveX, moveY, 0f) * speed * Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            transform.position += Vector3.up * jumpHeight;
+        }
     }
 
-    public void SpeedBoost(float percent, float duration)
+    public void ResetToStart()
     {
-        StartCoroutine(BoostCoroutine(percent, duration));
+        transform.position = startPosition;
     }
 
-    IEnumerator BoostCoroutine(float percent, float duration)
+    // Freeze Pinkalicious temporarily (Red Seashell)
+    public void FreezePlayer(bool freeze)
     {
-        moveSpeed = baseSpeed * (1 + percent);
-
-        yield return new WaitForSeconds(duration);
-
-        moveSpeed = baseSpeed;
+        isFrozen = freeze;
     }
 
-    public void ResetSpeed()
+    // Add seashells (Golden Seashell)
+    public void AddGoldenSeashell(int amount = 1)
     {
-        moveSpeed = baseSpeed;
+        goldenSeashellsCollected += amount;
+    }
+
+    // Remove seashells (Red Seashell)
+    public void LoseGoldenSeashells(int amount = 1)
+    {
+        goldenSeashellsCollected -= amount;
+        if (goldenSeashellsCollected < 0)
+            goldenSeashellsCollected = 0;
     }
 }
