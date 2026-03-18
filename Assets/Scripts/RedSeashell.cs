@@ -1,40 +1,42 @@
 using UnityEngine;
-using System.Collections; // Needed for the timer!
+using System.Collections;
 
 public class RedSeashell : MonoBehaviour
 {
-    public float freezeDuration = 3f; 
+    public float freezeDuration = 3f;
+    private bool hasTriggered = false;
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (hasTriggered) return;
+
         if (other.CompareTag("Player"))
         {
+            hasTriggered = true;
             PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
+
             if (playerMovement != null)
             {
-                playerMovement.LoseGoldenSeashells(2);
-                
-                // Start a timer to freeze her for a few seconds
                 StartCoroutine(FreezeTimer(playerMovement));
             }
 
-            // Safety check: only call GameManager if it exists
-            if (GameManager.Instance != null)
-            {
-                GameManager.Instance.LoseLife(1);
-            }
+            GameManager.Instance.LoseLife(1);
 
-            // Hide the shell immediately so she doesn't hit it twice
+            // Hide the shell immediately so it looks gone
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<Collider2D>().enabled = false;
-            Destroy(gameObject, 4f); // Destroy fully after the freeze is over
+
+            // Fix: Wait slightly longer than the freeze duration before destroying
+            // This ensures the Coroutine finishes unfreezing the player first.
+            Destroy(gameObject, freezeDuration + 0.5f);
         }
     }
 
     IEnumerator FreezeTimer(PlayerMovement player)
     {
-        player.FreezePlayer(true);  // Turn off movement
+        player.FreezePlayer(true);
         yield return new WaitForSeconds(freezeDuration);
-        player.FreezePlayer(false); // Turn movement back on
+        player.FreezePlayer(false); 
+        Debug.Log("Pinkalicious unfrozen!"); 
     }
 }

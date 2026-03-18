@@ -8,14 +8,15 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
+    
     [Header("Game State")]
     public int score = 0;
     public int lives = 3;
+    public int maxLives = 5;
 
     [Header("Collected Letters")]
-    [Tooltip("Letters collected by the player across levels.")]
-    public HashSet<string> collectedLetters = new HashSet<string>();
+    // Changed to List to match your WordDisplay script logic
+    public List<string> collectedLetters = new List<string>(); 
 
     [Header("Scene Settings")]
     [Tooltip("Optional: set a scene name to load on game over.")]
@@ -23,15 +24,15 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton pattern
-        if (Instance != null && Instance != this)
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); 
+        }
+        else
         {
             Destroy(gameObject);
-            return;
         }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     #region Score & Lives
@@ -52,11 +53,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void GainLife(int amount)
+    {
+       lives = Mathf.Min(lives + amount, maxLives);
+    }
+    
     public void ResetGame()
     {
         score = 0;
         lives = 3;
-        collectedLetters.Clear(); // Reset letters too
+        collectedLetters.Clear(); 
         Debug.Log("Game reset.");
     }
 
@@ -71,28 +77,24 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Letter Tracking
-    /// <summary>
-    /// Adds a letter to the player's collected letters.
-    /// </summary>
     public void AddLetter(string letter)
     {
-        if (collectedLetters.Add(letter)) // Adds only if not already collected
+        // For a List, we check if it Contains the letter first to avoid duplicates
+        if (!collectedLetters.Contains(letter)) 
         {
+            collectedLetters.Add(letter);
             Debug.Log("Collected Letters: " + string.Join(",", collectedLetters));
+            
+            // This updates the UI immediately when a letter is touched
+      Object.FindFirstObjectByType<WordDisplay>()?.UpdateDisplay();
         }
     }
 
-    /// <summary>
-    /// Check if a specific letter has already been collected.
-    /// </summary>
     public bool HasLetter(string letter)
     {
         return collectedLetters.Contains(letter);
     }
 
-    /// <summary>
-    /// Reset letters (if you want to start a new word/level sequence)
-    /// </summary>
     public void ResetLetters()
     {
         collectedLetters.Clear();

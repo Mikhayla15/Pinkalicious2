@@ -3,26 +3,25 @@ using UnityEngine;
 public class GoldenSeashell : MonoBehaviour
 {
     [Header("Letter Info")]
-    public string letter; // Assign this in the Inspector, e.g., "A", "B", "C"
+    public string letter; // Assign in Inspector
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            // Tell the PlayerMovement script (if needed)
-            PlayerMovement player = other.GetComponent<PlayerMovement>();
-            if (player != null)
-            {
-                player.AddGoldenSeashell();
-            }
-
-            // Save the letter to the persistent GameManager
+            // Add letter if it exists
             if (!string.IsNullOrEmpty(letter))
             {
                 GameManager.Instance.AddLetter(letter);
+                Debug.Log("Collected letter: " + letter);
             }
 
-            // Destroy the seashell after collecting
+            // Add life
+            GameManager.Instance.GainLife(1);
+
+            Debug.Log("Letters now: " + string.Join(",", GameManager.Instance.collectedLetters));
+
+            // Destroy seashell so it doesn't trigger again
             Destroy(gameObject);
         }
     }

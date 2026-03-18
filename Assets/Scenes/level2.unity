@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e59d9e5f6704fe0acc2ce3d183b020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoldenSeashell
+  letter: 
 --- !u!61 &58075934
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -280,7 +281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 130691319}
   - component: {fileID: 130691321}
-  - component: {fileID: 130691320}
+  - component: {fileID: 130691322}
   m_Layer: 0
   m_Name: WordManager
   m_TagString: Untagged
@@ -303,19 +304,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 391659528}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &130691320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130691318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7739328d17ed3494d8c6017c58f4082b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SecretShell
-  letterIndex: 0
 --- !u!114 &130691321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +317,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SecretWordManager
   wordText: {fileID: 903280111}
+--- !u!114 &130691322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130691318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630a18cdddb9a4bb291e846d078b01a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WordDisplay
+  displayText: {fileID: 903280111}
 --- !u!1 &145096719
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,53 +600,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1 &503666937
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 503666939}
-  - component: {fileID: 503666938}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &503666938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503666937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3298d91cc432547a4856f4570f8e30ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  score: 0
-  lives: 3
-  gameOverSceneName: GameOver
---- !u!4 &503666939
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503666937}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00362, y: -0.15374, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &520627604
 GameObject:
   m_ObjectHideFlags: 0
@@ -1508,6 +1462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e59d9e5f6704fe0acc2ce3d183b020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoldenSeashell
+  letter: 
 --- !u!114 &1060131160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2124,6 +2079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e59d9e5f6704fe0acc2ce3d183b020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoldenSeashell
+  letter: 
 --- !u!114 &1397005387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2302,6 +2258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e59d9e5f6704fe0acc2ce3d183b020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoldenSeashell
+  letter: 
 --- !u!61 &1406175880
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2528,6 +2485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e59d9e5f6704fe0acc2ce3d183b020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoldenSeashell
+  letter: 
 --- !u!61 &1611226858
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2711,6 +2669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e59d9e5f6704fe0acc2ce3d183b020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoldenSeashell
+  letter: 
 --- !u!61 &1852951748
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3100,7 +3059,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 726833260}
-  - {fileID: 503666939}
   - {fileID: 851842574}
   - {fileID: 1313969514}
   - {fileID: 1060131156}
