@@ -2457,8 +2457,7 @@ Transform:
   m_LocalPosition: {x: 4.58, y: -2.27, z: 0}
   m_LocalScale: {x: 0.059819788, y: 0.08194529, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1927036818}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1010941917
@@ -3498,7 +3497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca75e8782d675472594b57686b02290c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelTransition
-  nextSceneName: level2
 --- !u!114 &1693377687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4061,11 +4059,11 @@ Transform:
   m_GameObject: {fileID: 1927036817}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -55.948082, y: 34.572712, z: 0}
-  m_LocalScale: {x: 9.531189, y: 9.098082, z: 1}
+  m_LocalPosition: {x: 1.2331975, y: 0.563071, z: 0}
+  m_LocalScale: {x: 0.5701537, y: 0.74554497, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1010941916}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1927036819
 MonoBehaviour:
@@ -4321,6 +4319,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 733054255}
   - {fileID: 1010941916}
+  - {fileID: 1927036818}
   - {fileID: 619394802}
   - {fileID: 625500408}
   - {fileID: 211949223}
