@@ -9,19 +9,23 @@ public class GoldenSeashell : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Add letter if it exists
+           if (GameManager.Instance != null)
+            {
+                GameManager.Instance.AddSeashell(1); // Adds to the carry-over total
+                GameManager.Instance.GainLife(1);    // Adds the life
+            }
             if (!string.IsNullOrEmpty(letter))
             {
-                GameManager.Instance.AddLetter(letter);
-                Debug.Log("Collected letter: " + letter);
+                if (GameManager.Instance != null)
+                {
+                    GameManager.Instance.AddLetter(letter);
+                    Debug.Log("Collected letter: " + letter);
+                }
             }
-
-            // Add life
-            GameManager.Instance.GainLife(1);
 
             Debug.Log("Letters now: " + string.Join(",", GameManager.Instance.collectedLetters));
 
-            // Destroy seashell so it doesn't trigger again
+            // Destroy seashell 
             Destroy(gameObject);
         }
     }

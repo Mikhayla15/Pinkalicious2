@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public int lives = 3;
     public int maxLives = 5;
+    public int totalSeashells = 0;
 
     [Header("Collected Letters")]
     // Changed to List to match your WordDisplay script logic
@@ -98,6 +99,11 @@ public class GameManager : MonoBehaviour
     public void ResetLetters()
     {
         collectedLetters.Clear();
+    }
+    public void AddSeashell(int amount)
+    {
+        totalSeashells += amount;
+        Debug.Log("Total Seashells in Backpack: " + totalSeashells);
     }
     #endregion
 }

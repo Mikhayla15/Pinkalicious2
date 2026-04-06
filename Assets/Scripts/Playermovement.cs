@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 2f;
 
     [Header("Score Settings")]
-    public int goldenSeashellsCollected = 0;
+    // Note: We are now using GameManager.Instance.totalSeashells instead of this local one
+    public int goldenSeashellsCollected = 0; 
     public TMP_Text scoreText;
     public TMP_Text livesText;
 
@@ -26,11 +27,20 @@ public class PlayerMovement : MonoBehaviour
         {
             MovePlayer();
         }
+        
+        // We call UpdateUI here to keep the screen refreshed
+        UpdateUI();
+    }
 
-        if(scoreText != null)
+    void UpdateUI()
+    {
+        // Check for the score text
+        if(scoreText != null && GameManager.Instance != null)
         {
-            scoreText.text = "Seashells: " + goldenSeashellsCollected;
+            scoreText.text = "Seashells: " + GameManager.Instance.totalSeashells;
         }
+
+        // Check for the lives text
         if(livesText != null && GameManager.Instance != null)
         {
             livesText.text = "Lives: " + GameManager.Instance.lives;
@@ -60,19 +70,16 @@ public class PlayerMovement : MonoBehaviour
         transform.position = startPosition;
     }
 
-    // Freeze Pinkalicious temporarily (Red Seashell)
     public void FreezePlayer(bool freeze)
     {
         isFrozen = freeze;
     }
 
-    // Add seashells (Golden Seashell)
     public void AddGoldenSeashell(int amount = 1)
     {
         goldenSeashellsCollected += amount;
     }
 
-    // Remove seashells (Red Seashell)
     public void LoseGoldenSeashells(int amount = 1)
     {
         goldenSeashellsCollected -= amount;
