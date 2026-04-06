@@ -22,10 +22,9 @@ public class SecretShell : MonoBehaviour
         {
             if (wordManager != null)
             {
-                // 🔥 Reveal letter in the UI (handled by SecretWordManager)
+               
                 wordManager.RevealLetter(letterIndex);
 
-                // 🔥 Save the letter in GameManager (so it persists across levels)
                 GameManager.Instance.AddLetter(GetLetterFromIndex(letterIndex));
             }
 

@@ -26,7 +26,7 @@ public class RedSeashell : MonoBehaviour
         
         if (!hasTriggered && other.CompareTag("Player"))
         {
-            if (hasTriggered) return; // Mark as triggered IMMEDIATELY
+            if (hasTriggered) return; 
             GetComponent<Collider2D>().enabled = false;
             Debug.Log("REDUCING LIFE NOW");
 

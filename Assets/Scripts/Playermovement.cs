@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Score Settings")]
     public int goldenSeashellsCollected = 0;
     public TMP_Text scoreText;
+    public TMP_Text livesText;
 
     private Vector3 startPosition;
     private bool isFrozen = false;
@@ -29,6 +30,10 @@ public class PlayerMovement : MonoBehaviour
         if(scoreText != null)
         {
             scoreText.text = "Seashells: " + goldenSeashellsCollected;
+        }
+        if(livesText != null && GameManager.Instance != null)
+        {
+            livesText.text = "Lives: " + GameManager.Instance.lives;
         }
     }
 

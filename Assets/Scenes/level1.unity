@@ -1142,7 +1142,6 @@ GameObject:
   - component: {fileID: 625500407}
   - component: {fileID: 625500409}
   - component: {fileID: 625500413}
-  - component: {fileID: 625500416}
   - component: {fileID: 625500417}
   m_Layer: 0
   m_Name: pinkalicious
@@ -1299,19 +1298,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.05, y: 4.55}
   m_EdgeRadius: 0
---- !u!114 &625500416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 625500405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28e59d9e5f6704fe0acc2ce3d183b020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GoldenSeashell
-  letter: 
 --- !u!114 &625500417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1601,8 +1587,7 @@ Transform:
   m_LocalPosition: {x: -3.38, y: -2.6, z: 0}
   m_LocalScale: {x: 0.051917907, y: 0.062302623, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1555091918}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &730938407
@@ -2286,7 +2271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RedSeashell
   freezeDuration: 3
-  frozentext: {fileID: 0}
+  frozentext: {fileID: 1636789262}
 --- !u!1 &1171049484
 GameObject:
   m_ObjectHideFlags: 0
@@ -2722,52 +2707,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoldenSeashell
   letter: 
---- !u!1 &1555091917
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1555091918}
-  - component: {fileID: 1555091919}
-  m_Layer: 0
-  m_Name: PosionSeashell
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1555091918
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1555091917}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -55.948082, y: 34.572712, z: 0}
-  m_LocalScale: {x: 9.531189, y: 9.098082, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 730938406}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1555091919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1555091917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07beb2ece171247a183f6b8ef0f15360, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RedSeashell
-  freezeDuration: 3
-  frozentext: {fileID: 1636789262}
 --- !u!1 &1636789262
 GameObject:
   m_ObjectHideFlags: 0
@@ -2812,7 +2751,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636789262}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -2978,6 +2917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WordDisplay
   displayText: {fileID: 1692122420}
+  wordLength: 5
 --- !u!1 &1692122419
 GameObject:
   m_ObjectHideFlags: 0
@@ -3250,7 +3190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   score: 0
   lives: 3
-  maxLives: 5
+  maxLives: 4
   collectedLetters: []
   gameOverSceneName: GameOver
 --- !u!4 &1730062479
@@ -3594,52 +3534,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoldenSeashell
   letter: 
---- !u!1 &1927036817
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1927036818}
-  - component: {fileID: 1927036819}
-  m_Layer: 0
-  m_Name: PosionSeashell
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1927036818
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1927036817}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2331975, y: 0.563071, z: 0}
-  m_LocalScale: {x: 0.5701537, y: 0.74554497, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1927036819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1927036817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07beb2ece171247a183f6b8ef0f15360, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RedSeashell
-  freezeDuration: 3
-  frozentext: {fileID: 0}
 --- !u!1 &1943450940
 GameObject:
   m_ObjectHideFlags: 0
@@ -3882,8 +3776,6 @@ SceneRoots:
   - {fileID: 1730062479}
   - {fileID: 519420032}
   - {fileID: 733054255}
-  - {fileID: 1010941916}
-  - {fileID: 1927036818}
   - {fileID: 619394802}
   - {fileID: 625500408}
   - {fileID: 1824223515}
@@ -3899,6 +3791,7 @@ SceneRoots:
   - {fileID: 58062350}
   - {fileID: 730938406}
   - {fileID: 1943450943}
+  - {fileID: 1010941916}
   - {fileID: 388564584}
   - {fileID: 1273468455}
   - {fileID: 103111458}
