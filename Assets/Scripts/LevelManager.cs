@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
     {
         if(other.CompareTag("Player")) // Make sure your player has the "Player" tag
         {
-            SceneManager.LoadScene("Level2"); // Replace "Level2" with your next scene name
+            SceneManager.LoadScene("level1"); // Replace "Level2" with your next scene name
         }
     }
 }
