@@ -5,19 +5,18 @@ using TMPro; // Make sure you are using TextMeshPro if using TMP_Text
 public class WordDisplay : MonoBehaviour
 {
     public TMP_Text displayText; // Assign in Inspector (your top UI element)
-
+    public int wordLength = 5;
     void Start()
     {
-        UpdateDisplay();
+       Invoke("UpdateDisplay", 0.1f);
     }
 
     public void UpdateDisplay()
     {
-        if (GameManager.Instance != null)
+        if (GameManager.Instance != null && displayText != null)
         {
             // Build a string like: A - - C - - if letters are collected
             // Assuming you know the word length, e.g., 6 letters
-            int wordLength = 6; 
             string display = "";
 
             for (int i = 0; i < wordLength; i++)
@@ -26,9 +25,7 @@ public class WordDisplay : MonoBehaviour
                 // This example just shows letters in order they were collected
                 if (i < GameManager.Instance.collectedLetters.Count)
                 {
-                    string[] letters = new string[GameManager.Instance.collectedLetters.Count];
-                    GameManager.Instance.collectedLetters.CopyTo(letters);
-                    display += letters[i];
+                    display += GameManager.Instance.collectedLetters[i];
                 }
                 else
                 {
@@ -40,6 +37,7 @@ public class WordDisplay : MonoBehaviour
             }
 
             displayText.text = display;
+            Debug.Log("UI Updated in new scene: " + display);
         }
     }
 }

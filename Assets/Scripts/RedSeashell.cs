@@ -5,69 +5,58 @@ public class RedSeashell : MonoBehaviour
 {
     public float freezeDuration = 3f;
     private bool hasTriggered = false;
-
     public GameObject frozentext; 
 
-    private void Awake()
+    private void Start()
     {
-        // Automatically find the text if you forgot to drag it in
+        // Automatically find the text if the slot is empty
         if (frozentext == null)
         {
             frozentext = GameObject.Find("frozentext");
+        }
+        if (frozentext != null)
+        {
+            frozentext.SetActive(false);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (hasTriggered) return;
-
-        // Make sure your player object has the "Player" Tag in the Inspector!
-        if (other.CompareTag("Player"))
+        
+        
+        if (!hasTriggered && other.CompareTag("Player"))
         {
-            hasTriggered = true;
+            if (hasTriggered) return; // Mark as triggered IMMEDIATELY
+            GetComponent<Collider2D>().enabled = false;
+            Debug.Log("REDUCING LIFE NOW");
 
-            PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
-
-            if (playerMovement != null)
-            {
-                StartCoroutine(FreezeTimer(playerMovement));
-            }
-
-            // Check if GameManager exists before calling LoseLife
             if (GameManager.Instance != null)
             {
-                GameManager.Instance.LoseLife(1);
+                // Force it to subtract exactly 1
+                GameManager.Instance.LoseLife(1); 
+                Debug.Log("Current Lives in Manager: " + GameManager.Instance.lives);
             }
 
-            // Hide the shell so it looks like it's gone, but it's still running the script
-            GetComponent<SpriteRenderer>().enabled = false;
+            // 2. Disable everything so it can't hit again
             GetComponent<Collider2D>().enabled = false;
+            GetComponent<SpriteRenderer>().enabled = false;
+
+            // 3. Start the freeze
+            PlayerMovement player = other.GetComponent<PlayerMovement>();
+            if (player != null) StartCoroutine(FreezeSequence(player));
         }
     }
 
-    private IEnumerator FreezeTimer(PlayerMovement player)
+    private IEnumerator FreezeSequence(PlayerMovement player)
     {
-        // 1. Show the "You're Frozen" text
-        if (frozentext != null) 
-        {
-            frozentext.SetActive(true);
-        }
-
-        // 2. Freeze the player
+        if (frozentext != null) frozentext.SetActive(true);
         player.FreezePlayer(true);
 
-        // 3. Wait
         yield return new WaitForSeconds(freezeDuration);
 
-        // 4. Unfreeze the player and hide the text
+        if (frozentext != null) frozentext.SetActive(false);
         player.FreezePlayer(false);
-        
-        if (frozentext != null)
-        {
-            frozentext.SetActive(false);
-        }
 
-        // 5. NOW destroy the shell object
-        Destroy(gameObject);
+        Destroy(gameObject); // Remove shell from scene after freeze is over
     }
 }
