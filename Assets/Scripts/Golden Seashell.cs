@@ -12,7 +12,6 @@ public class GoldenSeashell : MonoBehaviour
            if (GameManager.Instance != null)
             {
                 GameManager.Instance.AddSeashell(1); // Adds to the carry-over total
-                GameManager.Instance.GainLife(1);    // Adds the life
             }
             if (!string.IsNullOrEmpty(letter))
             {

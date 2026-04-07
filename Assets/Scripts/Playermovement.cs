@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
+        UpdateUI();
     }
 
     void Update()
