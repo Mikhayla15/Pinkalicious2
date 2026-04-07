@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     public int totalSeashells = 0;
 
     [Header("Collected Letters")]
-    // Changed to List to match your WordDisplay script logic
     public List<string> collectedLetters = new List<string>(); 
 
     [Header("Scene Settings")]
@@ -69,11 +68,8 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        Debug.Log("Game Over!");
-        if (!string.IsNullOrEmpty(gameOverSceneName))
-        {
-            SceneManager.LoadScene(gameOverSceneName);
-        }
+        Debug.Log("Game Over! All lives lost.");
+        
     }
     #endregion
 
@@ -85,8 +81,6 @@ public class GameManager : MonoBehaviour
         {
             collectedLetters.Add(letter);
             Debug.Log("Collected Letters: " + string.Join(",", collectedLetters));
-            
-            // This updates the UI immediately when a letter is touched
       Object.FindFirstObjectByType<WordDisplay>()?.UpdateDisplay();
         }
     }

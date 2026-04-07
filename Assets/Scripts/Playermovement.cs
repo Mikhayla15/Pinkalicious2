@@ -34,19 +34,21 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void UpdateUI()
-    {
-        // Check for the score text
-        if(scoreText != null && GameManager.Instance != null)
-        {
-            scoreText.text = "Seashells: " + GameManager.Instance.totalSeashells;
-        }
+{
+    if (GameManager.Instance == null) return;
 
-        // Check for the lives text
-        if(livesText != null && GameManager.Instance != null)
-        {
-            livesText.text = "Lives: " + GameManager.Instance.lives;
-        }
+    // Update Lives Text
+    if (livesText != null)
+    {
+        livesText.text = "Lives: " + GameManager.Instance.lives;
     }
+
+    // Update Seashell Text
+    if (scoreText != null)
+    {
+        scoreText.text = "Seashells: " + GameManager.Instance.totalSeashells;
+    }
+}
 
     void MovePlayer()
     {
