@@ -1,10 +1,10 @@
 
 using UnityEngine;
-using TMPro; // Make sure you are using TextMeshPro if using TMP_Text
+using TMPro; 
 
 public class WordDisplay : MonoBehaviour
 {
-    public TMP_Text displayText; // Assign in Inspector (your top UI element)
+    public TMP_Text displayText; 
     public int wordLength = 5;
     void Start()
     {
@@ -14,7 +14,7 @@ public class WordDisplay : MonoBehaviour
     {
         if (GameManager.Instance != null && displayText != null)
         {
-            string display = ""; // This is the variable the warning is talking about
+            string display = "";
 
             for (int i = 0; i < wordLength; i++)
             {

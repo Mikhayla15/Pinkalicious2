@@ -32,12 +32,11 @@ public class RedSeashell : MonoBehaviour
 
             if (GameManager.Instance != null)
             {
-                // Force it to subtract exactly 1
+                // subtract  1
                 GameManager.Instance.LoseLife(1); 
                 Debug.Log("Current Lives in Manager: " + GameManager.Instance.lives);
             }
 
-            // 2. Disable everything so it can't hit again
             GetComponent<Collider2D>().enabled = false;
             GetComponent<SpriteRenderer>().enabled = false;
 

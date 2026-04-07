@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SecretShell : MonoBehaviour
 {
-    public int letterIndex;  // which letter this shell reveals
+    public int letterIndex; 
     private SecretWordManager wordManager;
 
     void Start()
@@ -36,7 +36,7 @@ public class SecretShell : MonoBehaviour
     // Helper function to map the index to the letter
     string GetLetterFromIndex(int index)
     {
-        string word = "PEARL"; // SecretWordManager will handle UI, don't try to use secretWord here
+        string word = "PEARL"; 
         return word[index].ToString();
     }
 }

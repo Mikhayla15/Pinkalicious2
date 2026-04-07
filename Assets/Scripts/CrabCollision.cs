@@ -3,7 +3,7 @@ using UnityEngine;
 public class CrabCollision : MonoBehaviour
 {
     public int damage = 1;
-    public float hitCooldown = 1.5f; // Time before the crab can hurt you again
+    public float hitCooldown = 1.5f; // Time before the crab can hurt player again
     private float lastHitTime;
     
     private void OnTriggerEnter2D(Collider2D other)

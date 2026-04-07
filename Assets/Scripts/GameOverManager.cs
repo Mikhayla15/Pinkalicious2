@@ -40,7 +40,6 @@ public class GameOverManager : MonoBehaviour
         {
             GameManager.Instance.lives = 3;
             GameManager.Instance.totalSeashells = 0;
-            // This is the missing piece to make it "Universal"
             GameManager.Instance.collectedLetters.Clear(); 
         }
 

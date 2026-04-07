@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 /// <summary>
-/// Singleton GameManager that persists across scenes and tracks score, lives, and collected letters.
+///  GameManager that persists across scenes and tracks score, lives, and collected letters.
 /// </summary>
 public class GameManager : MonoBehaviour
 {
@@ -76,7 +76,6 @@ public class GameManager : MonoBehaviour
     #region Letter Tracking
     public void AddLetter(string letter)
     {
-        // For a List, we check if it Contains the letter first to avoid duplicates
         if (!collectedLetters.Contains(letter)) 
         {
             collectedLetters.Add(letter);

@@ -4,7 +4,7 @@ public class TurtlePatrol : MonoBehaviour
 {
     public float speed = 2f;
     public float moveDistance = 3f; // How far it goes before turning around
-    public bool moveVertical = false; // Check this in Inspector for Up/Down movement
+    public bool moveVertical = false; // 
 
     private Vector3 startPosition;
     private int direction = 1;

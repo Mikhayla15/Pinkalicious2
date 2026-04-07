@@ -17,7 +17,7 @@ public class HorizontalPatrol : MonoBehaviour
         float newX = startPos.x + Mathf.Sin(Time.time * speed) * distance;
         transform.position = new Vector3(newX, startPos.y, startPos.z);
         
-        // Optional: Flip the turtle sprite based on direction
+        // Flip the turtle sprite based on direction
         if (Mathf.Cos(Time.time * speed) > 0)
             transform.localScale = new Vector3(1, 1, 1); // Facing Right
         else

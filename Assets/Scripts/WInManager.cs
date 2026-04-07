@@ -5,7 +5,7 @@ using System.Collections;
 
 public class WinManager : MonoBehaviour
 {
-    public TMP_Text pirateMessageText; // Drag the 'win' text object here
+    public TMP_Text pirateMessageText; 
     public int shellsRequired = 10;
     public int lettersRequired = 5;
 

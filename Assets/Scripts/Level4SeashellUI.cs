@@ -3,7 +3,7 @@ using TMPro; // This is the key!
 
 public class Level4SeashellUI : MonoBehaviour
 {
-    // Adding 'public' creates the Slot in the Inspector
+    
     public TMP_Text seashellText; 
 
     void Start()

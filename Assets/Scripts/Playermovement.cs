@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 2f;
 
     [Header("Score Settings")]
-    // Note: We are now using GameManager.Instance.totalSeashells instead of this local one
+    // 
     public int goldenSeashellsCollected = 0; 
     public TMP_Text scoreText;
     public TMP_Text livesText;
@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
             MovePlayer();
         }
         
-        // We call UpdateUI here to keep the screen refreshed
+        //  call UpdateUI here to keep the screen refreshed
         UpdateUI();
     }
 

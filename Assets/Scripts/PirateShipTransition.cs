@@ -1,10 +1,10 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // This allows us to change scenes
+using UnityEngine.SceneManagement; 
 
 public class PirateShipTransition : MonoBehaviour
 {
     [Header("Destination")]
-    public string levelToLoad = "Level 4"; // You can change this in the Inspector
+    public string levelToLoad = "Level 4"; 
 
     private bool hasTriggered = false;
 
@@ -19,8 +19,6 @@ public class PirateShipTransition : MonoBehaviour
             // 2. Load the specific level
             SceneManager.LoadScene(levelToLoad);
             
-            // Note: If you prefer using your SceneController, use:
-            // SceneManager.LoadScene("Level 4");
         }
     }
 }

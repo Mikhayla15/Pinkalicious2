@@ -14,7 +14,7 @@ public class IntroManager : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton pattern to keep this object alive across scenes
+        //  pattern to keep this object alive across scenes
         if (Instance == null)
         {
             Instance = this;
@@ -26,7 +26,6 @@ public class IntroManager : MonoBehaviour
         }
     }
 
-    // Call this from your "Start" button
     public void StartGame()
     {
         SceneManager.LoadScene("level1");
